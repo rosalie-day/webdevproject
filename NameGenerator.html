@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Name Acronym Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CDN for navbar styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e0f7fa;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: #1b4d4f;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #147267;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container-acronym {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #ffffff;
+            border: 2px solid #1b4d4f;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #147267;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #147267;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0f5955;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #1b4d4f;
+        }
+
+        .navbar {
+            background-color: #b2ebf2;
+        }
+
+        .nav-link {
+            color: #1b4d4f !important;
+        }
+
+        .nav-link:hover {
+            color: #147267 !important;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html">Resume</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="scratchpage.html">Scratch-page</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="NameGenerator.html">Name Acronyms</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Sweet & Silly Name Acronym Generator</h1>
+
+    <div class="container-acronym">
+        <p>Enter your name below to see what it *really* stands for 😄</p>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <br>
+        <button onclick="generateAcronym()">Generate</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const wordBank = {
+            A: ["Amazing", "Adventurous", "Affectionate", "Artistic", "Avocado-Lover"],
+            B: ["Brilliant", "Bubbly", "Bold", "Banana-Enthusiast", "Bestie"],
+            C: ["Creative", "Caring", "Curious", "Cake-Lover", "Cool-Bean"],
+            D: ["Delightful", "Determined", "Dazzling", "Donut-Fan", "Dreamer"],
+            E: ["Excellent", "Energetic", "Elegant", "Exciting", "Emoji-Expert"],
+            F: ["Fantastic", "Fabulous", "Funny", "Fries-Lover", "Fluffy-Hearted"],
+            G: ["Great", "Genuine", "Goofy", "Gummy-Bear-Fan", "Giggle-Master"],
+            H: ["Happy", "Helpful", "Hilarious", "Honey-Lover", "Hug-Giver"],
+            I: ["Inspiring", "Imaginative", "Inventive", "Ice-Cream-Lover", "Introvert-Friendly"],
+            J: ["Joyful", "Jazzy", "Jolly", "Juicy", "Jellybean-Champion"],
+            K: ["Kind", "Keen", "Kooky", "Kit-Kat-Lover", "Koala-Fan"],
+            L: ["Legendary", "Lively", "Lucky", "Latte-Lover", "Lovely"],
+            M: ["Marvelous", "Motivated", "Magical", "Muffin-Enthusiast", "Moonbeam"],
+            N: ["Nice", "Neat", "Nurturing", "Nacho-Lover", "Night-Owl"],
+            O: ["Outstanding", "Optimistic", "Original", "Oreo-Fan", "Overthinker"],
+            P: ["Positive", "Playful", "Polite", "Pizza-Connoisseur", "Pancake-Pro"],
+            Q: ["Quick", "Quirky", "Queenly", "Quokka-Fan", "Quiz-Whiz"],
+            R: ["Radiant", "Remarkable", "Reliable", "Rice-Lover", "Rainbow-Chaser"],
+            S: ["Spectacular", "Smart", "Silly", "Sundae-Superstar", "Sunbeam"],
+            T: ["Terrific", "Talented", "Trustworthy", "Taco-Fanatic", "Tea-Lover"],
+            U: ["Unique", "Upbeat", "Understanding", "Unicorn-Believer", "Universe-Admirer"],
+            V: ["Valiant", "Vibrant", "Versatile", "Vanilla-Ice-Lover", "Vacation-Dreamer"],
+            W: ["Wonderful", "Witty", "Warmhearted", "Waffle-Enthusiast", "Whale-Friend"],
+            X: ["Xceptional", "Xtraordinary", "Xpressive", "Xenial", "Xylophone-Fan"],
+            Y: ["Youthful", "Yummy", "Yielding", "Yogurt-Lover", "Year-Round-Snacker"],
+            Z: ["Zesty", "Zealous", "Zany", "Zen", "Zebra-Fan"]
+        };
+
+        function generateAcronym() {
+            const name = document.getElementById('nameInput').value.trim().toUpperCase().replace(/[^A-Z]/g, '');
+            if (name === "") {
+                document.getElementById('output').innerHTML = "Please enter your name!";
+                return;
+            }
+
+            let result = "";
+            for (let letter of name) {
+                let options = wordBank[letter];
+                if (options) {
+                    let word = options[Math.floor(Math.random() * options.length)];
+                    result += `${letter} - ${word}<br>`;
+                } else {
+                    result += `${letter} - (No word found)<br>`;
+                }
+            }
+
+            document.getElementById('output').innerHTML = result;
+        }
+    </script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
