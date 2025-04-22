@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tennis - My Favorite Hobby</title>
-    <link rel="stylesheet" type="text/css" href="../startbootstrap-clean-blog-gh-pages/css/scratch.css">
+    <!-- Link to your CSS files -->
+    <link rel="stylesheet" href="css/scratchstyle.css">
 </head>
 <body>
     <div class="common header">
@@ -21,16 +22,17 @@
 
         <h2>My Favorite Hobby</h2>
         <p>Tennis is my favorite sport because it's fun, challenging, and runs in my family!</p>
-        <ol>
+        <ol class="centered-list">
             <li>Why I Love Tennis:
-                <ul>
+                <ul class="centered-list">
                     <li>It keeps me fit and healthy.</li>
                     <li>It improves my focus and strategy.</li>
                     <li>It's a great way to make new friends.</li>
                 </ul>
+                <br>
             </li>
             <li>My Essential Tennis Gear:
-                <ul>
+                <ul class="centered-list">
                     <li>Tennis Racket</li>
                     <li>Tennis Shoes</li>
                     <li>Tennis Balls</li>
@@ -55,7 +57,8 @@
         
         <br><br><br><br>
         <h2>Wimbledon Champions Tableau Graph</h2>
-        <div class='tableauPlaceholder' id='viz1745272094543' style='position: relative'>
+<div class="tableau-container">
+    <div class='tableauPlaceholder' id='viz1745272094543' style='position: relative'>
             <noscript><a href='#'><img alt='Wimbledon&#39;s Champions ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Wi&#47;WimbledonsChampions&#47;WimbledonsChampions&#47;1_rss.png' style='border: none' /></a></noscript>
             <object class='tableauViz' style='display:none;'>
                 <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
@@ -81,7 +84,8 @@
             var scriptElement = document.createElement('script');
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
             vizElement.parentNode.insertBefore(scriptElement, vizElement);
-        </script>
+    </script>
+</div> 
 
         <br><br>
         <p><a href="#top">Go to the Top</a></p>
